@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 export const FormEdit = () => {
   const { id } = useParams();
@@ -49,21 +51,32 @@ export const FormEdit = () => {
    */
   const actividadActualizada = async () => {
     try {
-      await fetch(`http://localhost:5000/api/actividades/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          usuario: usuarioEdit,
-          proyecto: proyectoEdit,
-          compañia: compañiaEdit,
-          tipo: tipoEdit,
-          descripcion: descripcionEdit,
-          minutos: minutosEdit,
-          fecha: fechaEdit,
-          equipo: equipoEdit,
-        }),
+      // await fetch(`http://localhost:5000/api/actividades/${id}`, {
+      await fetch(
+        `https://backend-technova-6smf.onrender.com/api/actividades/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            usuario: usuarioEdit,
+            proyecto: proyectoEdit,
+            compañia: compañiaEdit,
+            tipo: tipoEdit,
+            descripcion: descripcionEdit,
+            minutos: minutosEdit,
+            fecha: fechaEdit,
+            equipo: equipoEdit,
+          }),
+        }
+      );
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Actividad Editada",
+        showConfirmButton: false,
+        timer: 1500,
       });
     } catch (error) {
       console.log(`Error al actualizar la actividad, ${error}`);
@@ -77,7 +90,7 @@ export const FormEdit = () => {
     e.preventDefault();
 
     // Actualizar actividad
-    await actividadActualizada();
+    actividadActualizada();
   };
 
   /**
@@ -88,9 +101,20 @@ export const FormEdit = () => {
     navigate("/");
   };
   return (
-    <div className="bg-white flex flex-col justify-center items-center p-8 rounded-lg shadow-lg w-full h-screen">
+    <motion.div
+      className="bg-white flex flex-col justify-center items-center rounded-lg shadow-lg w-full h-screen"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h2 className="text-3xl font-semibold text-center text-primary mb-6">
+        Editar Registro De Actividad
+      </h2>
+      <p className="text-primary text-sm md:mb-4 font-semibold">
+        ¡Todos los campos deben estar completados para editar correctamente!
+      </p>
       <form className="flex flex-col gap-4 md:mt-5" onSubmit={handleSubmit}>
-        <div className="flex flex-wrap gap-10">
+        <div className="flex flex-wrap justify-between gap-5">
           <div className="flex flex-col">
             <label htmlFor="usuario" className="text-gray-600 mb-2">
               Nombre de usuario
@@ -102,6 +126,7 @@ export const FormEdit = () => {
               onChange={(e) => setUsuarioEdit(e.target.value)}
               className="input p-3 border border-gray-300 rounded-md focus:outline-none"
               placeholder="Nombre de usuario"
+              required
             />
           </div>
 
@@ -116,6 +141,7 @@ export const FormEdit = () => {
               onChange={(e) => setProyectoEdit(e.target.value)}
               className="input p-3 border border-gray-300 rounded-md focus:outline-none"
               placeholder="Nombre de proyecto"
+              required
             />
           </div>
 
@@ -130,6 +156,7 @@ export const FormEdit = () => {
               onChange={(e) => setCompañiaEdit(e.target.value)}
               className="input p-3 border border-gray-300 rounded-md focus:outline-none"
               placeholder="Nombre de compañia"
+              required
             />
           </div>
 
@@ -144,11 +171,12 @@ export const FormEdit = () => {
               onChange={(e) => setTipoEdit(e.target.value)}
               className="input p-3 border border-gray-300 rounded-md focus:outline-none"
               placeholder="Tipo de actividad"
+              required
             />
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-10">
+        <div className="flex flex-wrap justify-between gap-5">
           <div className="flex flex-col">
             <label htmlFor="descripcion" className="text-gray-600 mb-2">
               Descripción de actividad
@@ -160,6 +188,7 @@ export const FormEdit = () => {
               onChange={(e) => setDescripcionEdit(e.target.value)}
               className="input p-3 border border-gray-300 rounded-md focus:outline-none"
               placeholder="Descripción de actividad"
+              required
             />
           </div>
 
@@ -174,6 +203,7 @@ export const FormEdit = () => {
               onChange={(e) => setMinutosEdit(e.target.value)}
               className="input p-3 border border-gray-300 rounded-md focus:outline-none"
               placeholder="Número de minutos"
+              required
             />
           </div>
 
@@ -182,12 +212,13 @@ export const FormEdit = () => {
               Fecha de actividad
             </label>
             <input
-              type="text"
+              type="date"
               id="fecha"
               value={fechaEdit}
               onChange={(e) => setFechaEdit(e.target.value)}
               className="input p-3 border border-gray-300 rounded-md focus:outline-none"
               placeholder="Fecha de actividad"
+              required
             />
           </div>
 
@@ -202,6 +233,7 @@ export const FormEdit = () => {
               onChange={(e) => setEquipoEdit(e.target.value)}
               className="input p-3 border border-gray-300 rounded-md focus:outline-none"
               placeholder="Nombre de equipo"
+              required
             />
           </div>
         </div>
@@ -214,6 +246,6 @@ export const FormEdit = () => {
           Actualizar
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };

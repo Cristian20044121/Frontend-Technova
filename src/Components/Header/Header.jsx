@@ -12,40 +12,42 @@ export const Header = () => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className=" md:w-1/5"
+      className=" md:w-full"
     >
-      <div className="bg-primary flex-col h-screen text-white md:p-2 md:w-full">
-        <header className="md:p-1 md:flex-col md:justify-between md:items-center md:h-20">
+      <div className="bg-primary flex flex-col md:flex-row text-white md:p-4 md:w-full">
+        <header className="flex justify-between md:gap-10 items-center md:h-20 p-4 w-full">
           <img
             src="/logo-technova.png"
-            alt="logo of page "
-            className="md:w-1/2 sm:w-1/2 "
+            alt="logo of page"
+            className="sm:w-1/5 md:w-1/5 md:h-20"
           />
-          <div className=" flex md:flex-col  md:mt-20   flex-wrap gap-5 ">
-            <div className="md:flex items-center md:gap-3">
+
+          <div className="flex items-center justify-between gap-6 md:gap-10">
+            <div className="flex items-center gap-3">
               <img
                 src="/image-user-profile.png"
                 alt="image of profile"
-                className="rounded-full h-10 w-10"
+                className="rounded-full h-8 w-8"
               />
-              <h2 className="md:text-sm font-semibold">Valentina</h2>
+              <h2 className="text-sm font-semibold">Valentina</h2>
             </div>
-            <div className="border-t-2 border-white flex flex-col md:pt-3">
+
+            <div className="flex flex-col md:flex-row md:pl-2 md:gap-10">
               <Link
                 to="/"
-                className="flex items-end md:p-2 md:mt-3 md:gap-3 hover:bg-gray  hover:text-black hover:border-l-4 hover:border-l-sky-600 transition-all ease-in-out duration-300 md:text-sm"
+                className="flex items-center gap-3 p-2 hover:bg-gray hover:text-black hover:border-l-2 hover:border-l-sky-600 transition-all ease-in-out duration-300 text-sm"
               >
                 <HomeOutlinedIcon /> Home
               </Link>
               <Link
                 to="/"
-                className="flex items-end md:p-2 md:mt-5 md:gap-3 hover:bg-gray  hover:text-black hover:border-l-4 hover:border-l-sky-600 transition-all ease-in-out duration-300 md:text-sm"
+                className="flex items-center gap-3 p-2 hover:bg-gray hover:text-black hover:border-l-2 hover:border-l-sky-600 transition-all ease-in-out duration-300 text-sm"
               >
-                <AssessmentOutlinedIcon className="" /> Services
+                <AssessmentOutlinedIcon /> Services
               </Link>
               <Link
                 to="/"
-                className="flex items-end md:p-2 md:mt-5 md:gap-3 hover:bg-gray  hover:text-black hover:border-l-4 hover:border-l-sky-600 transition-all ease-in-out duration-300 md:text-sm"
+                className="flex items-center gap-3 p-2 hover:bg-gray hover:text-black hover:border-l-2 hover:border-l-sky-600 transition-all ease-in-out duration-300 text-sm"
               >
                 <LoginOutlinedIcon /> Sign Out
               </Link>

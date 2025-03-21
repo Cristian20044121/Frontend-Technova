@@ -5,7 +5,8 @@ import { Main } from "./Components/Main";
 function App() {
   return (
     <div className="App ">
-      <div className="md:flex justify-between">
+      {/* <div className="md:flex justify-between"> */}
+      <div className="">
         <Header />
         <Main />
       </div>

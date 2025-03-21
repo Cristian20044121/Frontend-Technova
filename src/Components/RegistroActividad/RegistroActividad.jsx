@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 export const RegistroActividad = () => {
   //manejo de datos de formulario
@@ -9,7 +10,7 @@ export const RegistroActividad = () => {
   const [compañia, setCompañia] = useState("");
   const [tipo, setTipo] = useState("");
   const [descripcion, setDescripcion] = useState("");
-  const [minutos, setMinutos] = useState("");
+  const [minutos, setMinutos] = useState(1);
   const [fecha, setFecha] = useState("");
   const [equipo, setEquipo] = useState("");
 
@@ -47,11 +48,15 @@ export const RegistroActividad = () => {
           }),
         }
       );
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Registro Agregado",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       console.log(`Error al enviar un nuevo registro ${error}`);
-      alert(
-        "Error al enviar un nuevo registro: alguno de los datos no coincide"
-      );
     }
   };
   /**
@@ -87,13 +92,22 @@ export const RegistroActividad = () => {
   const navigate = useNavigate();
   const handleRedirection = () => [navigate("/")];
   return (
-    <div className="md:pl-5">
-      <div className="bg-white flex flex-col justify-center items-center p-8 rounded-lg shadow-lg w-full h-screen">
+    <motion.div
+      className="md:pl-5"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="bg-white flex flex-col justify-center items-center rounded-lg shadow-lg w-full h-screen">
         <h2 className="text-3xl font-semibold text-center text-primary mb-6">
           Agregar Registro De Actividad
         </h2>
+        <p className="text-primary text-sm md:mb-4 font-semibold">
+          ¡Todos los campos deben estar completados para agregar un registro
+          correctamente!
+        </p>
         <form className="flex flex-col gap-4 md:mt-5" onSubmit={handleSubmit}>
-          <div className="flex flex-wrap gap-10">
+          <div className="flex flex-wrap justify-between gap-5">
             <div className="flex flex-col">
               <label htmlFor="usuario" className="text-gray-600 mb-2">
                 Nombre de usuario
@@ -103,7 +117,7 @@ export const RegistroActividad = () => {
                 id="usuario"
                 value={usuario}
                 onChange={(e) => setUsuario(e.target.value)}
-                className="input p-3 border border-gray-300 rounded-md focus:outline-none"
+                className="input p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-sky-500"
                 placeholder="Nombre de usuario"
               />
             </div>
@@ -147,7 +161,7 @@ export const RegistroActividad = () => {
               />
             </div>
           </div>
-          <div className="flex flex-wrap gap-10">
+          <div className="flex flex-wrap justify-between gap-5">
             <div className="flex flex-col">
               <label htmlFor="descripcion" className="text-gray-600 mb-2">
                 Descripción de actividad
@@ -171,6 +185,8 @@ export const RegistroActividad = () => {
                 value={minutos}
                 onChange={(e) => setMinutos(e.target.value)}
                 className="input p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
+                min={1}
+                defaultValue={1}
                 placeholder="Número de minutos"
               />
             </div>
@@ -210,6 +226,6 @@ export const RegistroActividad = () => {
           </button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };

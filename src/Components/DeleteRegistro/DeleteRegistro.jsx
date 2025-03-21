@@ -10,7 +10,7 @@ export const DeleteRegistro = ({ id }) => {
     try {
       // await fetch(`http://localhost:5000/api/actividades/${id}`, {
       await fetch(
-        `https://backend-technova.onrender.com//api/actividades/${id}`,
+        `https://backend-technova-6smf.onrender.com/api/actividades/${id}`,
         {
           method: "DELETE",
           headers: {

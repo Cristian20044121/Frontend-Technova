@@ -28,22 +28,25 @@ export const RegistroActividad = () => {
   ) => {
     try {
       // await fetch("http://localhost:5000/api/actividades", {
-      await fetch("http://localhost:5000/api/actividades", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          usuario,
-          proyecto,
-          compañia,
-          tipo,
-          descripcion,
-          minutos,
-          fecha,
-          equipo,
-        }),
-      });
+      await fetch(
+        "https://backend-technova-6smf.onrender.com/api/actividades",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            usuario,
+            proyecto,
+            compañia,
+            tipo,
+            descripcion,
+            minutos,
+            fecha,
+            equipo,
+          }),
+        }
+      );
     } catch (error) {
       console.log(`Error al enviar un nuevo registro ${error}`);
       alert(

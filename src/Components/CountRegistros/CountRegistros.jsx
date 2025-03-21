@@ -10,7 +10,7 @@ export const CountRegistros = () => {
     const allActividades = async () => {
       // const response = await fetch(`http://localhost:5000/api/actividades`);
       const response = await fetch(
-        `https://backend-technova.onrender.com//api/actividades`
+        `https://backend-technova-6smf.onrender.com/api/actividades`
       );
       if (response.ok) {
         const dataReponse = await response.json();

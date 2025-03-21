@@ -27,6 +27,7 @@ export const RegistroActividad = () => {
     equipo
   ) => {
     try {
+      // await fetch("http://localhost:5000/api/actividades", {
       await fetch("http://localhost:5000/api/actividades", {
         method: "POST",
         headers: {

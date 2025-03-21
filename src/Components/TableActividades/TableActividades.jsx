@@ -14,7 +14,8 @@ export const Registros = () => {
   useEffect(() => {
     const obtenerActividades = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/actividades");
+        // const response = await fetch("http://localhost:5000/api/actividades");
+        const response = await fetch("https://backend-technova.onrender.com/");
         if (response.ok) {
           const data = await response.json();
           setActividades(data);

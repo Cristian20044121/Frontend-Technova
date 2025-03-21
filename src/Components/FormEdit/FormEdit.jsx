@@ -19,8 +19,11 @@ export const FormEdit = () => {
   useEffect(() => {
     const getOneActividad = async () => {
       try {
+        // const actividadId = await fetch(
+        //   `http://localhost:5000/api/actividades/${id}`
+        // );
         const actividadId = await fetch(
-          `http://localhost:5000/api/actividades/${id}`
+          `https://backend-technova.onrender.com/api/actividades/${id}`
         );
 
         if (actividadId.ok) {

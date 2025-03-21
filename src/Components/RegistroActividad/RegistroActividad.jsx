@@ -174,7 +174,7 @@ export const RegistroActividad = () => {
                 Fecha de actividad
               </label>
               <input
-                type="text"
+                type="date"
                 id="fecha"
                 value={fecha}
                 onChange={(e) => setFecha(e.target.value)}

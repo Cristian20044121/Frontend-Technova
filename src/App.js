@@ -5,7 +5,7 @@ import { Main } from "./Components/Main";
 function App() {
   return (
     <div className="App ">
-      <div className="md:flex md:gap-5 border ">
+      <div className="md:flex justify-between">
         <Header />
         <Main />
       </div>
